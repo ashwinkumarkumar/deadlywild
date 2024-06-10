@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>[Event Name] Registration</h1>
+  <form action="process_registration.php" method="post">
+    <fieldset>
+      <legend>Attendee Information</legend>
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br>
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+      <br>
+      <label for="phone">Phone Number (Optional):</label>
+      <input type="tel" id="phone" name="phone">
+      <br>
+    </fieldset>
+    <fieldset>
+      <legend>Event Options</legend>
+      <label for="tickets">Number of Tickets:</label>
+      <select id="tickets" name="tickets">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <br>
+      <label for="workshop">Workshop Attendance (Optional):</label><br>
+      <input type="checkbox" id="workshop" name="workshop" value="yes"> Yes
+      <input type="checkbox" id="noworkshop" name="workshop" value="no" checked> No
+      <br>
+    </fieldset>
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
