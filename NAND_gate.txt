@@ -1,0 +1,21 @@
+import numpy as np
+X = np.array([
+[0, 0],
+[0, 1],
+[1, 0],
+[1, 1]
+])
+d = np.array([1, 1, 1, 0])
+W = np.zeros(3)
+lr = 1
+epochs = 10
+for _ in range(epochs):
+for xi, target in zip(X, d):
+xi = np.insert(xi, 0, 1)
+y = 1 if np.dot(W, xi) >= 0 else 0
+W += lr * (target - y) * xi
+for xi in X:
+xi = np.insert(xi, 0, 1)
+y = 1 if np.dot(W, xi) >= 0 else 0
+print(f"Input: {xi[1:]}, Predicted Output: {y}")
+

@@ -1,0 +1,44 @@
+#Adaline neural network
+import numpy as np
+
+def Adaline(Input, Target, lr=0.2, stop=0.001):
+	weight = np.random.random(Input.shape[1])
+	bias = np.random.random(1)
+
+	Error=[stop +1]
+	# check the stop condition for the network
+	while Error[-1] > stop or Error[-1]-Error[-2] > 0.0001:
+		error = []
+		for i in range(Input.shape[0]):
+			Y_input = sum(weight*Input[i]) + bias
+
+			# Update the weight
+			for j in range(Input.shape[1]):
+				weight[j]=weight[j] + lr*(Target[i]-Y_input)*Input[i][j]
+
+			# Update the bias
+			bias=bias + lr*(Target[i]-Y_input)
+
+			# Store squared error value
+			error.append((Target[i]-Y_input)**2)
+		# Store sum of square errors
+		Error.append(sum(error))
+	return weight, bias,Error[-1]
+
+# Input dataset
+x = np.array([[1.0, 1.0, 1.0],
+			[1.0, -1.0, 1.0],
+			[-1.0, 1.0, 1.0],
+			[-1.0, -1.0, -1.0]])
+# Target values
+t = np.array([1, 1, 1, -1])
+print(f"Input:\n{x}")
+print(f"\nOutput: {t}")
+w,b,error = Adaline(x, t, lr=0.2, stop=0.001)
+print('\nweight :',w)
+print('Bias :',b)
+print('Error :',error)
+print("\nPredicted Output:")
+for i in range(x.shape[0]):
+    output = sum(w*x[i]) + b
+    print(output)
